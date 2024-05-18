@@ -1,9 +1,9 @@
 ﻿using System;
 using System.Text;
 
-namespace LearnArray
+namespace LearnArray.LList
 {
-    public class List1 : IList
+    public class LList1 : IList
     {
         public class Node
         {

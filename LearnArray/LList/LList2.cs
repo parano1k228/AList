@@ -1,10 +1,9 @@
 ﻿using System;
 using System.Collections.Generic;
-using System.Text;
 
-namespace LearnArray
+namespace LearnArray.LList
 {
-    public class ListR : IList
+    public class LList2 : IList
     {
         public class Node
         {
@@ -32,6 +31,7 @@ namespace LearnArray
         }
 
         public Node root = null;
+        public Node tail = null;
 
         public void Init(int[] ini)
         {
@@ -41,7 +41,18 @@ namespace LearnArray
 
             foreach (int value in ini)
             {
-                AddEnd(value);
+                Node newNode = new Node(value);
+                if (root == null)
+                {
+                    root = newNode;
+                    tail = root;
+                }
+                else
+                {
+                    tail.next = newNode;
+                    newNode.prev = tail;
+                    tail = newNode;
+                }
             }
         }
 
@@ -60,40 +71,24 @@ namespace LearnArray
         public void Clear()
         {
             root = null;
+            tail = null;
         }
 
         public int[] ToArray()
         {
-            List<int> list = new List<int>();
+            List<int> result = new List<int>();
             Node current = root;
             while (current != null)
             {
-                list.Add(current.value);
+                result.Add(current.value);
                 current = current.next;
             }
-            return list.ToArray();
+            return result.ToArray();
         }
 
-        public string ToString()
+        public override string ToString()
         {
-            if (root == null)
-            {
-                throw new ArgumentNullException(nameof(root));
-            }
-
-            StringBuilder result = new StringBuilder();
-
-            Node current = root;
-            while (current != null)
-            {
-                result.AppendFormat("{0}", current.value);
-                if (current.next != null)
-                {
-                    result.Append("");
-                }
-                current = current.next;
-            }
-            return result.ToString();
+            return string.Join("", ToArray());
         }
 
         public void AddStart(int value)
@@ -102,6 +97,7 @@ namespace LearnArray
             if (root == null)
             {
                 root = newNode;
+                tail = newNode;
             }
             else
             {
@@ -114,48 +110,46 @@ namespace LearnArray
         public void AddEnd(int value)
         {
             Node newNode = new Node(value);
-            if (root == null)
+            if (tail == null)
             {
                 root = newNode;
+                tail = newNode;
             }
             else
             {
-                Node current = root;
-                while (current.next != null)
-                {
-                    current = current.next;
-                }
-                current.next = newNode;
-                newNode.prev = current;
+                newNode.prev = tail;
+                tail.next = newNode;
+                tail = newNode;
             }
         }
 
         public void AddPos(int index, int value)
         {
             if (index < 0 || index > Size())
-                throw new ArgumentOutOfRangeException(nameof(index));
+                throw new IndexOutOfRangeException();
 
             if (index == 0)
             {
                 AddStart(value);
+                return;
             }
-            else if (index == Size())
+
+            if (index == Size())
             {
                 AddEnd(value);
+                return;
             }
-            else
+
+            Node current = root;
+            for (int i = 0; i < index - 1; i++)
             {
-                Node newNode = new Node(value);
-                Node current = root;
-                for (int i = 0; i < index - 1; i++)
-                {
-                    current = current.next;
-                }
-                newNode.next = current.next;
-                newNode.prev = current;
-                current.next.prev = newNode;
-                current.next = newNode;
+                current = current.next;
             }
+            Node newNode = new Node(value);
+            newNode.next = current.next;
+            newNode.prev = current;
+            current.next.prev = newNode;
+            current.next = newNode;
         }
 
         public int DelStart()
@@ -166,78 +160,55 @@ namespace LearnArray
             int value = root.value;
             root = root.next;
             if (root != null)
-            {
                 root.prev = null;
-            }
+            else
+                tail = null;
+
             return value;
         }
 
         public int DelEnd()
         {
-            if (root == null)
+            if (tail == null)
                 throw new InvalidOperationException("List is empty");
 
-            if (root.next == null)
-            {
-                int value = root.value;
+            int value = tail.value;
+            tail = tail.prev;
+            if (tail != null)
+                tail.next = null;
+            else
                 root = null;
-                return value;
-            }
 
-            Node current = root;
-            while (current.next.next != null)
-            {
-                current = current.next;
-            }
-            int endValue = current.next.value;
-            current.next = null;
-            return endValue;
+            return value;
         }
 
         public int DelPos(int index)
         {
             if (index < 0 || index >= Size())
-                throw new ArgumentOutOfRangeException(nameof(index));
+                throw new IndexOutOfRangeException();
 
             if (index == 0)
-            {
                 return DelStart();
-            }
-            else if (index == Size() - 1)
-            {
-                return DelEnd();
-            }
-            else
-            {
-                Node current = root;
-                for (int i = 0; i < index - 1; i++)
-                {
-                    current = current.next;
-                }
-                int value = current.next.value;
-                current.next = current.next.next;
-                current.next.prev = current;
-                return value;
-            }
-        }
 
-        public int Get(int index)
-        {
-            if (index < 0 || index >= Size())
-                throw new ArgumentOutOfRangeException(nameof(index));
+            if (index == Size() - 1)
+                return DelEnd();
 
             Node current = root;
             for (int i = 0; i < index; i++)
             {
                 current = current.next;
             }
-            return current.value;
+            int value = current.value;
+            current.prev.next = current.next;
+            current.next.prev = current.prev;
+
+            return value;
         }
 
         public void Set(int index, int value)
         {
             if (index < 0 || index >= Size())
-                throw new ArgumentOutOfRangeException(nameof(index));
+                throw new IndexOutOfRangeException();
 
             Node current = root;
             for (int i = 0; i < index; i++)
@@ -247,50 +218,51 @@ namespace LearnArray
             current.value = value;
         }
 
+        public int Get(int index)
+        {
+            if (index < 0 || index >= Size())
+                throw new IndexOutOfRangeException();
+
+            Node current = root;
+            for (int i = 0; i < index; i++)
+            {
+                current = current.next;
+            }
+            return current.value;
+        }
+
         public void Reverse()
         {
-            Node prev = null;
             Node current = root;
-            Node next = null;
+            Node temp = null;
+
             while (current != null)
             {
-                next = current.next;
-                current.next = prev;
-                current.prev = next; 
-                prev = current;
-                current = next;
+                temp = current.prev;
+                current.prev = current.next;
+                current.next = temp;
+                current = current.prev;
             }
-            root = prev;
+
+            if (temp != null)
+                root = temp.prev;
         }
 
         public void HalfReverse()
         {
             int size = Size();
-            if (size <= 1)
-                return;
+            if (size < 2)
+                return; 
 
-            int mid = size / 2;
-            Node current = root;
-            for (int i = 0; i < mid; i++)
+            int halfSize = size / 2;
+            int lastIndex = size - 1;
+
+            for (int i = 0; i < halfSize; i++)
             {
-                current = current.next;
+                int temp = Get(i);
+                Set(i, Get(halfSize + i));
+                Set(halfSize + i, temp);
             }
-
-            Node firstHalfEnd = current.prev;
-            Node secondHalfStart = current;
-
-            firstHalfEnd.next = null;
-            secondHalfStart.prev = null;
-
-            Node lastNode = secondHalfStart;
-            while (lastNode.next != null)
-            {
-                lastNode = lastNode.next;
-            }
-            lastNode.next = root;
-            root.prev = lastNode;
-
-            root = secondHalfStart;
         }
 
         public int Min()
@@ -331,18 +303,18 @@ namespace LearnArray
                 throw new InvalidOperationException("List is empty");
 
             int min = root.value;
-            int index = 0;
             int minIndex = 0;
             Node current = root.next;
+            int index = 1;
             while (current != null)
             {
-                index++;
                 if (current.value < min)
                 {
                     min = current.value;
                     minIndex = index;
                 }
                 current = current.next;
+                index++;
             }
             return minIndex;
         }
@@ -352,43 +324,68 @@ namespace LearnArray
             if (root == null)
                 throw new InvalidOperationException("List is empty");
 
-            int max = root.value;
-            int index = 0;
             int maxIndex = 0;
+            int maxValue = root.value;
             Node current = root.next;
+            int currentIndex = 1;
+
             while (current != null)
             {
-                index++;
-                if (current.value > max)
+                if (current.value > maxValue)
                 {
-                    max = current.value;
-                    maxIndex = index;
+                    maxValue = current.value;
+                    maxIndex = currentIndex;
                 }
                 current = current.next;
+                currentIndex++;
             }
+
             return maxIndex;
         }
 
         public void Sort()
         {
-            int size = Size();
-            if (size <= 1)
+            if (root == null || root.next == null)
                 return;
 
-            for (int i = 0; i < size - 1; i++)
+            Node sorted = null;
+            Node current = root;
+
+            while (current != null)
             {
-                Node current = root;
-                for (int j = 0; j < size - i - 1; j++)
+                Node next = current.next;
+
+                if (sorted == null || current.value < sorted.value)
                 {
-                    if (current.value > current.next.value)
-                    {
-                        int temp = current.value;
-                        current.value = current.next.value;
-                        current.next.value = temp;
-                    }
-                    current = current.next;
+                    current.next = sorted;
+                    current.prev = null;
+                    if (sorted != null)
+                        sorted.prev = current;
+                    sorted = current;
                 }
+                else
+                {
+                    Node search = sorted;
+                    while (search.next != null && search.next.value < current.value)
+                    {
+                        search = search.next;
+                    }
+                    current.next = search.next;
+                    if (search.next != null)
+                        search.next.prev = current;
+                    search.next = current;
+                    current.prev = search;
+                }
+
+                current = next;
             }
+
+            root = sorted;
+            while (sorted.next != null)
+            {
+                sorted = sorted.next;
+            }
+            tail = sorted;
         }
     }
 }

@@ -1,14 +1,11 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.Linq;
 using System.Text;
-using System.Threading.Tasks;
 
-namespace LearnArray
+namespace LearnArray.AList
 {
-    public class AList : IList
+    public class AList0 : IList
     {
-        int[] array = new int[0];
+        private int[] array = { };
 
         public void Init(int[] ini)
         {
@@ -23,6 +20,7 @@ namespace LearnArray
             }
 
             array = new int[ini.Length];
+
             for (int i = 0; i < ini.Length; i++)
             {
                 array[i] = ini[i];
@@ -41,6 +39,7 @@ namespace LearnArray
         public int[] ToArray()
         {
             int[] result = new int[array.Length];
+
             for (int i = 0; i < array.Length; i++)
             {
                 result[i] = array[i];
@@ -52,6 +51,7 @@ namespace LearnArray
         public string ToString()
         {
             StringBuilder result = new StringBuilder();
+
             for(int i = 0; i < array.Length; i++)
             {
                 result.AppendFormat("{0}", array[i]);
@@ -63,10 +63,12 @@ namespace LearnArray
         public void AddStart(int value)
         {
             int[] newArray = new int[array.Length + 1];
+
             for (int i = 0; i < array.Length; i++)
             {
                 newArray[i + 1] = array[i];
             }
+
             newArray[0] = value;
             array = newArray;
         }
@@ -74,6 +76,7 @@ namespace LearnArray
         public void AddEnd(int value)
         {
             int[] newArray = new int[array.Length + 1];
+
             for (int i = 0; i < array.Length; i++)
             {
                 newArray[i] = array[i];
@@ -103,7 +106,7 @@ namespace LearnArray
                 {
                     newArray[i] = array[i];
                 }
-                if (i >= pos)
+                else if (i >= pos)
                 {
                     newArray[i + 1] = array[i];
                 }
@@ -120,7 +123,8 @@ namespace LearnArray
                 throw new ArgumentOutOfRangeException(nameof(array));
             }
 
-            int removedElement = array[0]; 
+            int removedElement = array[0];
+
             for (int i = 0; i < array.Length - 1; i++)
             {
                 array[i] = array[i + 1];
@@ -176,6 +180,7 @@ namespace LearnArray
             }
             else
             {
+                // TODO: не правильно должен быть throw new IndexOutOfRangeException
                 Console.WriteLine("Index out of range");
             }
         }
@@ -188,6 +193,7 @@ namespace LearnArray
             }
             else
             {
+                // TODO: не правильно должен быть throw new IndexOutOfRangeException
                 Console.WriteLine("Index out of range");
                 return -1;
             }
@@ -209,12 +215,12 @@ namespace LearnArray
 
         public void HalfReverse()
         {
-            int length = array.Length;
-            int halfLength = length / 2;
+            var length = array.Length;
+            var halfLength = length / 2;
 
-            for (int i = 0; i < halfLength; i++)
+            for (var i = 0; i < halfLength; i++)
             {
-                int temp = array[i];
+                var temp = array[i];
                 array[i] = array[length - halfLength + i];
                 array[length - halfLength + i] = temp;
             }
@@ -232,8 +238,8 @@ namespace LearnArray
                 throw new ArgumentOutOfRangeException(nameof(array));
             }
 
-            int minElement = array[0];
-            foreach (int element in array)
+            var minElement = array[0];
+            foreach (var element in array)
             {
                 if (element < minElement)
                     minElement = element;
@@ -254,9 +260,9 @@ namespace LearnArray
                 throw new ArgumentOutOfRangeException(nameof(array));
             }
 
-            int maxElement = array[0];
+            var maxElement = array[0];
 
-            foreach (int element in array)
+            foreach (var element in array)
             {
                 if (element > maxElement)
                     maxElement = element;
@@ -321,14 +327,14 @@ namespace LearnArray
 
         public void Sort()
         {
-            int n = array.Length;
-            for (int i = 0; i < n - 1; i++)
+            var n = array.Length;
+            for (var i = 0; i < n - 1; i++)
             {
-                for (int j = 0; j < n - i - 1; j++)
+                for (var j = 0; j < n - i - 1; j++)
                 {
                     if (array[j] > array[j + 1])
                     {
-                        int temp = array[j];
+                        var temp = array[j];
                         array[j] = array[j + 1];
                         array[j + 1] = temp;
                     }
