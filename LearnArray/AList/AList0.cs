@@ -180,8 +180,7 @@ namespace LearnArray.AList
             }
             else
             {
-                // TODO: не правильно должен быть throw new IndexOutOfRangeException
-                Console.WriteLine("Index out of range");
+                throw new IndexOutOfRangeException(nameof(index));
             }
         }
 
@@ -193,9 +192,7 @@ namespace LearnArray.AList
             }
             else
             {
-                // TODO: не правильно должен быть throw new IndexOutOfRangeException
-                Console.WriteLine("Index out of range");
-                return -1;
+                throw new IndexOutOfRangeException(nameof(index));
             }
         }
 
@@ -206,10 +203,11 @@ namespace LearnArray.AList
                 throw new ArgumentNullException(nameof(array));
             }
 
-            int reversedArray;
-            for (var i = array.Length - 1; i >= 0; i--)
+            for (int i = 0; i < array.Length / 2; i++)
             {
-                reversedArray = array[i];
+                int temp = array[i];
+                array[i] = array[array.Length - i - 1];
+                array[array.Length - i - 1] = temp;
             }
         }
 
