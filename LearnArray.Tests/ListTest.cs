@@ -8,6 +8,7 @@ using LearnArray.LList;
 namespace LearnArray.Tests
 {
     [TestFixture(TypeArgs = new Type[] { typeof(AList0) })]
+    [TestFixture(TypeArgs = new Type[] { typeof(AList1) })]
     [TestFixture(TypeArgs = new Type[] { typeof(LList1) })]
     [TestFixture(TypeArgs = new Type[] { typeof(LList2) })]
     [TestFixture(TypeArgs = new Type[] { typeof(LListR) })]
@@ -62,6 +63,12 @@ namespace LearnArray.Tests
             Assert.AreEqual(0, list.Size());
         }
 
+        [Test]
+        public void ClearTest2()
+        {
+            Assert.Throws<ArgumentNullException>(() => list.Init(null));
+        }
+
         [TestCase(new int[] { 1, 2, 3 }, new int[] { 1, 2, 3 }, TestName = "ToArray 1")]
         [TestCase(new int[] { 0, 0, 0 }, new int[] { 0, 0, 0 }, TestName = "ToArray 2")]
         [TestCase(new int[] { -1, -2, -3 }, new int[] { -1, -2, -3 }, TestName = "ToArray 3")]
@@ -74,6 +81,12 @@ namespace LearnArray.Tests
             Assert.AreEqual(expected.Count(), result.Count());
         }
 
+        [Test]
+        public void ToArrayTest2()
+        {
+            Assert.Throws<ArgumentNullException>(() => list.Init(null));
+        }
+
         [TestCase(new int[] { 1, 2, 3 }, "123", TestName = "ToString 1")]
         [TestCase(new int[] { 0, 0, 0 }, "000", TestName = "ToString 2")]
         [TestCase(new int[] { -1, -2, -3 }, "-1-2-3", TestName = "ToString 3")]
@@ -84,6 +97,12 @@ namespace LearnArray.Tests
 
             Assert.AreEqual(expected, result);
             Assert.AreEqual(expected.Count(), result.Count());
+        }
+
+        [Test]
+        public void ToStringTest2()
+        {
+            Assert.Throws<ArgumentNullException>(() => list.Init(null));
         }
 
         [TestCase(new int[] { 1, 2, 3 }, 4, new int[] { 4, 1, 2, 3 }, TestName = "AddStart 1")]
@@ -99,6 +118,12 @@ namespace LearnArray.Tests
             Assert.AreEqual(expected.Count(), result.Count());
         }
 
+        [Test]
+        public void AddStartTest2()
+        {
+            Assert.Throws<ArgumentNullException>(() => list.Init(null));
+        }
+
         [TestCase(new int[] { 1, 2, 3 }, 4, new int[] { 1, 2, 3, 4 }, TestName = "AddEnd 1")]
         [TestCase(new int[] { 0, 0, 0 }, 1, new int[] { 0, 0, 0, 1 }, TestName = "AddEnd 2")]
         [TestCase(new int[] { -1, -2, -3 }, -4, new int[] { -1, -2, -3, -4 }, TestName = "AddEnd 3")]
@@ -112,7 +137,13 @@ namespace LearnArray.Tests
             Assert.AreEqual(expected.Count(), result.Count());
         }
 
-       
+        [Test]
+        public void AddEndTest2()
+        {
+            Assert.Throws<ArgumentNullException>(() => list.Init(null));
+        }
+
+
         [TestCase(new int[] { 1, 2, 3 }, 2, 4, new int[] { 1, 2, 4, 3 }, TestName = "AddPos 1")]
         [TestCase(new int[] { 0, 0, 0 }, 2, 1, new int[] { 0, 0, 1, 0 }, TestName = "AddPos 2")]
         [TestCase(new int[] { -1, -2, -3 }, 1, -4, new int[] { -1, -4, -2, -3 }, TestName = "AddPos 3")]
@@ -124,6 +155,12 @@ namespace LearnArray.Tests
 
             Assert.AreEqual(expected, result);
             Assert.AreEqual(expected.Count(), result.Count());
+        }
+
+        [Test]
+        public void AddPosTest2()
+        {
+            Assert.Throws<ArgumentNullException>(() => list.Init(null));
         }
 
         [TestCase(new int[] { 4, 1, 2, 3 }, new int[] { 1, 2, 3 }, TestName = "DelStart 1")]
@@ -139,6 +176,12 @@ namespace LearnArray.Tests
             Assert.AreEqual(expected.Count(), result.Count());
         }
 
+        [Test]
+        public void DelStartTest2()
+        {
+            Assert.Throws<ArgumentNullException>(() => list.Init(null));
+        }
+
         [TestCase(new int[] { 1, 2, 3, 4 }, new int[] { 1, 2, 3 }, TestName = "DelEnd 1")]
         [TestCase(new int[] { 0, 0, 0, 1 }, new int[] { 0, 0, 0 }, TestName = "DelEnd 2")]
         [TestCase(new int[] { -1, -2, -3, -4 }, new int[] { -1, -2, -3 }, TestName = "DelEnd 3")]
@@ -152,6 +195,12 @@ namespace LearnArray.Tests
             Assert.AreEqual(expected.Count(), result.Count());
         }
 
+        [Test]
+        public void DelEndTest2()
+        {
+            Assert.Throws<ArgumentNullException>(() => list.Init(null));
+        }
+
         [TestCase(new int[] { 1, 2, 3, 4 }, 2, new int[] { 1, 2, 4 }, TestName = "DelPos 1")]
         [TestCase(new int[] { 0, 1, 0, 0 }, 1, new int[] { 0, 0, 0 }, TestName = "DelPos 2")]
         [TestCase(new int[] { -1, -2, -3, -4, -5 }, 3, new int[] { -1, -2, -3, -5 }, TestName = "DelPos 3")]
@@ -163,6 +212,12 @@ namespace LearnArray.Tests
 
             Assert.AreEqual(expected, result);
             Assert.AreEqual(expected.Count(), result.Count());
+        }
+
+        [Test]
+        public void DelPosTest2()
+        {
+            Assert.Throws<ArgumentNullException>(() => list.Init(null));
         }
 
         [TestCase(new int[] { 1, 2, 3 }, 1, 4, new int[] { 1, 4, 3 }, TestName = "Set 1")]
@@ -179,6 +234,12 @@ namespace LearnArray.Tests
             Assert.AreEqual(expected.Count(), result.Count());
         }
 
+        [Test]
+        public void SetTest2()
+        {
+            Assert.Throws<ArgumentNullException>(() => list.Init(null));
+        }
+
         [TestCase(new int[] { 2, 1, 3 }, 0, 2, TestName = "Get 1")]
         [TestCase(new int[] { 1, 2, 3 }, 1, 2, TestName = "Get 2")]
         [TestCase(new int[] { 0, 0, 1 }, 2, 1, TestName = "Get 3")]
@@ -193,6 +254,12 @@ namespace LearnArray.Tests
             Assert.AreEqual(expected, result);
         }
 
+        [Test]
+        public void GetTest2()
+        {
+            Assert.Throws<ArgumentNullException>(() => list.Init(null));
+        }
+
         [TestCase(new int[] { 1, 2, 3 }, new int[] { 3, 2, 1 }, TestName = "Reverse 1")]
         [TestCase(new int[] { 1, 2, 3, 4, 5 }, new int[] { 5, 4, 3, 2, 1 }, TestName = "Reverse 2")]
         public void ReverseTest1(int[] arr, int[] expected)
@@ -203,6 +270,12 @@ namespace LearnArray.Tests
 
             Assert.AreEqual(expected, result);
             Assert.AreEqual(expected.Count(), result.Count());
+        }
+
+        [Test]
+        public void ReverseTest2()
+        {
+            Assert.Throws<ArgumentNullException>(() => list.Init(null));
         }
 
         [TestCase(new int[] { 1, 2, 3, 4 }, new int[] { 3, 4, 1, 2 }, TestName = "HalfReverse 1")]
@@ -218,6 +291,12 @@ namespace LearnArray.Tests
             Assert.AreEqual(expected.Count(), result.Count());
         }
 
+        [Test]
+        public void HalfReverseTest2()
+        {
+            Assert.Throws<ArgumentNullException>(() => list.Init(null));
+        }
+
         [TestCase(new int[] {1, 3, 2 }, 1, TestName = "Min 1")]
         [TestCase(new int[] { 4, 5, 3, 6 }, 3, TestName = "Min 2")]
         [TestCase(new int[] {5, 8, 7, 4}, 4, TestName = "Min 3")]
@@ -227,6 +306,12 @@ namespace LearnArray.Tests
             int result = list.Min();
 
             Assert.AreEqual(expected, result);
+        }
+
+        [Test]
+        public void MinTest2()
+        {
+            Assert.Throws<ArgumentNullException>(() => list.Init(null));
         }
 
         [TestCase(new int[] { 3, 1, 2 }, 3, TestName = "Max 1")]
@@ -241,6 +326,12 @@ namespace LearnArray.Tests
             Assert.AreEqual(expected, result);
         }
 
+        [Test]
+        public void MaxTest2()
+        {
+            Assert.Throws<ArgumentNullException>(() => list.Init(null));
+        }
+
         [TestCase(new int[] { 1, 2, 3 }, 0, TestName = "IndexMin 1")]
         [TestCase(new int[] { 4 ,2, 3, 1, 5, 6 }, 3, TestName = "IndexMin 2")]
         [TestCase(new int[] { 2, 3, 4, 5, 6, 7, 8, 9, 10, 1 }, 9, TestName = "IndexMin 3")]
@@ -251,6 +342,12 @@ namespace LearnArray.Tests
 
             Assert.AreEqual(expected, result);
 
+        }
+
+        [Test]
+        public void IndexMinTest2()
+        {
+            Assert.Throws<ArgumentNullException>(() => list.Init(null));
         }
 
         [TestCase(new int[] { 3, 2, 1 }, 0, TestName = "IndeMax 1")]
@@ -264,6 +361,12 @@ namespace LearnArray.Tests
             Assert.AreEqual(expected, result);
         }
 
+        [Test]
+        public void IndexMaxTest2()
+        {
+            Assert.Throws<ArgumentNullException>(() => list.Init(null));
+        }
+
         [TestCase(new int[] { 2, 1, 3 }, new int[] { 1, 2, 3 }, TestName = "Sort 1")]
         [TestCase(new int[] { 2, 1, 3, 5 ,4 }, new int[] { 1, 2, 3, 4, 5 }, TestName = "Sort 2")]
         [TestCase(new int[] { 1, 2, 3 ,6 ,4, 5, 7, 10, 9, 8 }, new int[] { 1, 2, 3, 4, 5, 6, 7, 8, 9, 10 }, TestName = "Sort 3")]
@@ -275,6 +378,12 @@ namespace LearnArray.Tests
 
             Assert.AreEqual(expected, result);
             Assert.AreEqual(expected.Count(), result.Count());
+        }
+
+        [Test]
+        public void SortTest2()
+        {
+            Assert.Throws<ArgumentNullException>(() => list.Init(null));
         }
     }
 }

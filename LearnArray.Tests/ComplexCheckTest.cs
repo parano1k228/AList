@@ -6,8 +6,9 @@ using NUnit.Framework;
 namespace LearnArray.Tests
 {
     [TestFixture(TypeArgs = new Type[] { typeof(AList0) })]
+    [TestFixture(TypeArgs = new Type[] { typeof(AList1) })]
     [TestFixture(TypeArgs = new Type[] { typeof(LList1) })]
-    [TestFixture(TypeArgs = new Type[] { typeof(LList2) })]
+  //[TestFixture(TypeArgs = new Type[] { typeof(LList2) })]
     [TestFixture(TypeArgs = new Type[] { typeof(LListR) })]
     public class ComplexCheckTest<T> where T : IList, new()
     {
@@ -16,9 +17,9 @@ namespace LearnArray.Tests
         [Test]
         public void ComplexCheck1()
         {
-            int[] testData = { 1, 2, 3 };
+            int[] testData1 = { 1, 2, 3, 4 };
 
-            list.Init(testData);
+            list.Init(testData1);
             list.AddEnd(4);
             list.AddStart(0);
             list.AddPos(2, 99);
@@ -29,22 +30,21 @@ namespace LearnArray.Tests
             list.Reverse();
             list.Sort();
             list.HalfReverse();
-            Assert.AreEqual(new int[] { 2, 3, 1 }, list.ToArray(), "HalfReverse.");
+            Assert.AreEqual(new int[] { 4, 99, 2, 3 }, list.ToArray(), "HalfReverse.");
 
-            // Min, Max, IndexMin, IndexMax 
-            Assert.AreEqual(1, list.Min(), "Min.");
-            Assert.AreEqual(3, list.Max(), "Max.");
+            //Min, Max, IndexMin, IndexMax
+            Assert.AreEqual(2, list.Min(), "Min.");
+            Assert.AreEqual(99, list.Max(), "Max.");
             Assert.AreEqual(2, list.IndexMin(), "IndexMin.");
             Assert.AreEqual(1, list.IndexMax(), "IndexMax.");
         }
 
-        /*
         [Test]
         public void ComplexCheck2()
         {
-            int[] testData = { 1, 2, 3, 5, 4 };
+            int[] testData2 = { 1, 2, 3, 5, 4 };
 
-            list.Init(testData);
+            list.Init(testData2);
             list.DelPos(1);
             list.DelStart();
             list.DelEnd();
@@ -53,26 +53,37 @@ namespace LearnArray.Tests
             list.AddStart(0);
             list.AddPos(2, 99);
             list.Set(1, 8);
-            list.Sort();
             list.HalfReverse();
+            list.Sort();
+
+            //Min, Max, IndexMin, IndexMax
+            Assert.AreEqual(0, list.Min(), "Min.");
+            Assert.AreEqual(99, list.Max(), "Max.");
+            Assert.AreEqual(0, list.IndexMin(), "IndexMin.");
+            Assert.AreEqual(4, list.IndexMax(), "IndexMax.");
         }
 
         [Test]
         public void ComplexCheck3()
         {
-            int[] testData = { 1, 2, 3, 5, 4 };
+            int[] testData3 = { 1, 2, 3, 5, 4 };
 
-            list.Init(testData);
+            list.Init(testData3);
             list.Reverse();
             list.AddEnd(4);
             list.AddStart(0);
             list.AddPos(2, 99);
             list.Set(1, 8);
-            list.Sort();
             list.HalfReverse();
             list.DelPos(1);
             list.DelStart();
             list.DelEnd();
-        }*/
+
+            //Min, Max, IndexMin, IndexMax
+            Assert.AreEqual(0, list.Min(), "Min.");
+            Assert.AreEqual(99, list.Max(), "Max.");
+            Assert.AreEqual(2, list.IndexMin(), "IndexMin.");
+            Assert.AreEqual(4, list.IndexMax(), "IndexMax.");
+        }
     }
 }

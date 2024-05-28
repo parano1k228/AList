@@ -1,11 +1,11 @@
 ﻿
 Microsoft Visual Studio Solution File, Format Version 12.00
 # Visual Studio Version 16
-VisualStudioVersion = 25.0.1706.0
+VisualStudioVersion = 16.0.34902.97
 MinimumVisualStudioVersion = 10.0.40219.1
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "LearnArray", "LearnArray\LearnArray.csproj", "{72CAF24F-C512-4530-B93F-894B3364BC0E}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "LearnArray", "LearnArray\LearnArray.csproj", "{72CAF24F-C512-4530-B93F-894B3364BC0E}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "LearnArray.Tests", "LearnArray.Tests\LearnArray.Tests.csproj", "{C9D2F5E0-5D8A-421B-990E-A16299BF0206}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "LearnArray.Tests", "LearnArray.Tests\LearnArray.Tests.csproj", "{E84F8898-777D-4D7D-92B7-4CCBD22DD67B}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -17,10 +17,10 @@ Global
 		{72CAF24F-C512-4530-B93F-894B3364BC0E}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{72CAF24F-C512-4530-B93F-894B3364BC0E}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{72CAF24F-C512-4530-B93F-894B3364BC0E}.Release|Any CPU.Build.0 = Release|Any CPU
-		{C9D2F5E0-5D8A-421B-990E-A16299BF0206}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
-		{C9D2F5E0-5D8A-421B-990E-A16299BF0206}.Debug|Any CPU.Build.0 = Debug|Any CPU
-		{C9D2F5E0-5D8A-421B-990E-A16299BF0206}.Release|Any CPU.ActiveCfg = Release|Any CPU
-		{C9D2F5E0-5D8A-421B-990E-A16299BF0206}.Release|Any CPU.Build.0 = Release|Any CPU
+		{E84F8898-777D-4D7D-92B7-4CCBD22DD67B}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{E84F8898-777D-4D7D-92B7-4CCBD22DD67B}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{E84F8898-777D-4D7D-92B7-4CCBD22DD67B}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{E84F8898-777D-4D7D-92B7-4CCBD22DD67B}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
