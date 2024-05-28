@@ -62,7 +62,7 @@ namespace LearnArray.Tests
             Assert.AreEqual(expected, result);
             Assert.AreEqual(0, list.Size());
         }
-
+        
         [TestCase(new int[] { 1, 2, 3 }, new int[] { 1, 2, 3 }, TestName = "ToArray 1")]
         [TestCase(new int[] { 0, 0, 0 }, new int[] { 0, 0, 0 }, TestName = "ToArray 2")]
         [TestCase(new int[] { -1, -2, -3 }, new int[] { -1, -2, -3 }, TestName = "ToArray 3")]
@@ -74,7 +74,7 @@ namespace LearnArray.Tests
             Assert.AreEqual(expected, result);
             Assert.AreEqual(expected.Count(), result.Count());
         }
-
+        
         [TestCase(new int[] { 1, 2, 3 }, "123", TestName = "ToString 1")]
         [TestCase(new int[] { 0, 0, 0 }, "000", TestName = "ToString 2")]
         [TestCase(new int[] { -1, -2, -3 }, "-1-2-3", TestName = "ToString 3")]

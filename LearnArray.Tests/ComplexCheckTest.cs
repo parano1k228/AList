@@ -1,11 +1,12 @@
-﻿using System;
+﻿using NUnit.Framework;
+using System;
 using LearnArray.AList;
 using LearnArray.LList;
-using NUnit.Framework;
 
 namespace LearnArray.Tests
 {
     [TestFixture(TypeArgs = new Type[] { typeof(AList0) })]
+    [TestFixture(TypeArgs = new Type[] { typeof(AList1) })]
     [TestFixture(TypeArgs = new Type[] { typeof(LList1) })]
     [TestFixture(TypeArgs = new Type[] { typeof(LList2) })]
     [TestFixture(TypeArgs = new Type[] { typeof(LListR) })]
@@ -38,7 +39,6 @@ namespace LearnArray.Tests
             Assert.AreEqual(1, list.IndexMax(), "IndexMax.");
         }
 
-        /*
         [Test]
         public void ComplexCheck2()
         {
@@ -73,6 +73,6 @@ namespace LearnArray.Tests
             list.DelPos(1);
             list.DelStart();
             list.DelEnd();
-        }*/
+        }
     }
 }
