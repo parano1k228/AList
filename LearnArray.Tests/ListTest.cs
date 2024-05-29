@@ -1,5 +1,4 @@
 using NUnit.Framework;
-using LearnArray;
 using System;
 using System.Linq;
 using LearnArray.AList;
@@ -14,7 +13,7 @@ namespace LearnArray.Tests
     [TestFixture(TypeArgs = new Type[] { typeof(LListR) })]
     public class AlistTest<T> where T : IList, new()
     {
-        private readonly IList list = new T(); 
+        private readonly IList list = new T();
 
         [TestCase(new int[] { 1, 2, 3 }, new int[] { 1, 2, 3 }, TestName = "Init 1")]
         [TestCase(new int[] { 0, 0, 0 }, new int[] { 0, 0, 0 }, TestName = "Init 2")]
@@ -24,7 +23,7 @@ namespace LearnArray.Tests
             list.Init(arr);
 
             Assert.AreEqual(expected, list.ToArray());
-        } 
+        }
 
         [Test]
         public void InitTest2()
@@ -142,7 +141,6 @@ namespace LearnArray.Tests
         {
             Assert.Throws<ArgumentNullException>(() => list.Init(null));
         }
-
 
         [TestCase(new int[] { 1, 2, 3 }, 2, 4, new int[] { 1, 2, 4, 3 }, TestName = "AddPos 1")]
         [TestCase(new int[] { 0, 0, 0 }, 2, 1, new int[] { 0, 0, 1, 0 }, TestName = "AddPos 2")]
@@ -280,7 +278,7 @@ namespace LearnArray.Tests
 
         [TestCase(new int[] { 1, 2, 3, 4 }, new int[] { 3, 4, 1, 2 }, TestName = "HalfReverse 1")]
         [TestCase(new int[] { 0, 1, 1, 0 }, new int[] { 1, 0, 0, 1 }, TestName = "HalfReverse 2")]
-        [TestCase(new int[] { 1, 2, 3, 4, 5, 6 }, new int[] {4, 5, 6, 1, 2, 3 }, TestName = "HalfReverse 3")]
+        [TestCase(new int[] { 1, 2, 3, 4, 5, 6 }, new int[] { 4, 5, 6, 1, 2, 3 }, TestName = "HalfReverse 3")]
         public void HalfReverse_Test(int[] arr, int[] expected)
         {
             list.Init(arr);
@@ -299,7 +297,7 @@ namespace LearnArray.Tests
 
         [TestCase(new int[] {1, 3, 2 }, 1, TestName = "Min 1")]
         [TestCase(new int[] { 4, 5, 3, 6 }, 3, TestName = "Min 2")]
-        [TestCase(new int[] {5, 8, 7, 4}, 4, TestName = "Min 3")]
+        [TestCase(new int[] { 5, 8, 7, 4 }, 4, TestName = "Min 3")]
         public void MinTest1(int[] arr, int expected)
         {
             list.Init(arr);
@@ -333,7 +331,7 @@ namespace LearnArray.Tests
         }
 
         [TestCase(new int[] { 1, 2, 3 }, 0, TestName = "IndexMin 1")]
-        [TestCase(new int[] { 4 ,2, 3, 1, 5, 6 }, 3, TestName = "IndexMin 2")]
+        [TestCase(new int[] { 4, 2, 3, 1, 5, 6 }, 3, TestName = "IndexMin 2")]
         [TestCase(new int[] { 2, 3, 4, 5, 6, 7, 8, 9, 10, 1 }, 9, TestName = "IndexMin 3")]
         public void IndexMinTest1(int[] arr, int expected)
         {
@@ -368,8 +366,8 @@ namespace LearnArray.Tests
         }
 
         [TestCase(new int[] { 2, 1, 3 }, new int[] { 1, 2, 3 }, TestName = "Sort 1")]
-        [TestCase(new int[] { 2, 1, 3, 5 ,4 }, new int[] { 1, 2, 3, 4, 5 }, TestName = "Sort 2")]
-        [TestCase(new int[] { 1, 2, 3 ,6 ,4, 5, 7, 10, 9, 8 }, new int[] { 1, 2, 3, 4, 5, 6, 7, 8, 9, 10 }, TestName = "Sort 3")]
+        [TestCase(new int[] { 2, 1, 3, 5, 4 }, new int[] { 1, 2, 3, 4, 5 }, TestName = "Sort 2")]
+        [TestCase(new int[] { 1, 2, 3, 6, 4, 5, 7, 10, 9, 8 }, new int[] { 1, 2, 3, 4, 5, 6, 7, 8, 9, 10 }, TestName = "Sort 3")]
         public void SortTest1(int[] arr, int[] expected)
         {
             list.Init(arr);

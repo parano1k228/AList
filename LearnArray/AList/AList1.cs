@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Text;
+
 namespace LearnArray.AList
 {
     public class AList1 : IList
@@ -14,6 +15,7 @@ namespace LearnArray.AList
                 throw new ArgumentNullException(nameof(ini));
             }
 
+
             size = ini.Length;
             if (size > array.Length)
             {
@@ -27,7 +29,7 @@ namespace LearnArray.AList
 
         public int Size()
         {
-            return size; ;
+            return size;
         }
 
         public void Clear()

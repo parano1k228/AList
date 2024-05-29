@@ -43,7 +43,7 @@ namespace LearnArray.LList
             while (current != null)
             {
                 size++;
-                current = current.next;
+                current = current.next; 
             }
             return size;
         }

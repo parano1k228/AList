@@ -1,7 +1,7 @@
-﻿using System;
+﻿using NUnit.Framework;
+using System;
 using LearnArray.AList;
 using LearnArray.LList;
-using NUnit.Framework;
 
 namespace LearnArray.Tests
 {
@@ -78,7 +78,6 @@ namespace LearnArray.Tests
             list.DelPos(1);
             list.DelStart();
             list.DelEnd();
-
             //Min, Max, IndexMin, IndexMax
             Assert.AreEqual(0, list.Min(), "Min.");
             Assert.AreEqual(99, list.Max(), "Max.");
