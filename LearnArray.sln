@@ -3,12 +3,29 @@ Microsoft Visual Studio Solution File, Format Version 12.00
 # Visual Studio Version 16
 VisualStudioVersion = 16.0.34902.97
 MinimumVisualStudioVersion = 10.0.40219.1
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "LearnArray", "LearnArray\LearnArray.csproj", "{15AD1CB1-10FC-4B30-9639-7CB4455ECC64}"
+EndProject
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "LearnArray.Tests", "LearnArray.Tests\LearnArray.Tests.csproj", "{B224C8C9-E409-42FD-BD55-AE62F42C5BD1}"
+EndProject
 Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{15AD1CB1-10FC-4B30-9639-7CB4455ECC64}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{15AD1CB1-10FC-4B30-9639-7CB4455ECC64}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{15AD1CB1-10FC-4B30-9639-7CB4455ECC64}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{15AD1CB1-10FC-4B30-9639-7CB4455ECC64}.Release|Any CPU.Build.0 = Release|Any CPU
+		{B224C8C9-E409-42FD-BD55-AE62F42C5BD1}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{B224C8C9-E409-42FD-BD55-AE62F42C5BD1}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{B224C8C9-E409-42FD-BD55-AE62F42C5BD1}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{B224C8C9-E409-42FD-BD55-AE62F42C5BD1}.Release|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
 	EndGlobalSection
 	GlobalSection(ExtensibilityGlobals) = postSolution
-		        SolutionGuid = {670B42EA-9946-49DC-B16C-006D7E6EADEE}
-		SolutionGuid = {D1BA3718-9C4F-4FD4-A4AC-72134E8DFCA6}
+		SolutionGuid = {E6B7631E-2B3C-4585-86C5-E776F41840A5}
 	EndGlobalSection
 EndGlobal
