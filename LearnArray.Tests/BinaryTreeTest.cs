@@ -1,88 +1,212 @@
-﻿using System;
+﻿using NUnit.Framework;
+using System;
 using LearnArray.Tree;
-using NUnit.Framework;
+using System.IO;
 
 namespace LearnArray.Tests
 {
     [TestFixture]
     public class BinaryTreeTests
     {
-        [Test]
-        public void Insert_ValuesInsertedInOrder_TraversalMatches()
+        private BinaryTree tree;
+
+        [SetUp]
+        public void Setup()
         {
-            BinaryTree tree = new BinaryTree();
-
-            // Insert values
-            tree.Insert(5);
-            tree.Insert(3);
-            tree.Insert(8);
-            tree.Insert(1);
-            tree.Insert(4);
-            tree.Insert(7);
-            tree.Insert(9);
-
-            // Expected in-order traversal
-            int[] expected = { 1, 3, 4, 5, 7, 8, 9 };
-
-            // Perform in-order traversal
-            int[] actual = PerformInOrderTraversal(tree);
-
-            // Compare traversal result with expected
-            Assert.AreEqual(expected, actual);
+            tree = new BinaryTree();
         }
 
         [Test]
-        public void Search_ValueExists_ReturnsTrue()
+        public void TestInsert()
         {
-            BinaryTree tree = new BinaryTree();
-
-            // Insert values
             tree.Insert(5);
             tree.Insert(3);
-            tree.Insert(8);
-            tree.Insert(1);
-            tree.Insert(4);
             tree.Insert(7);
+            tree.Insert(1);
             tree.Insert(9);
+            tree.Insert(2);
 
-            // Search for existing value
-            int searchValue = 7;
-            bool isFound = tree.Search(searchValue);
-
-            // Assert
-            Assert.IsTrue(isFound);
+            int[] expected = { 1, 2, 3, 5, 7, 9 };
+            CollectionAssert.AreEqual(expected, tree.ToArray());
         }
 
         [Test]
-        public void Search_ValueDoesNotExist_ReturnsFalse()
+        public void TestSearch()
         {
-            BinaryTree tree = new BinaryTree();
+            int[] array = { 5, 3, 7, 1, 9, 2 };
+            tree.Init(array);
 
-            // Insert values
-            tree.Insert(5);
-            tree.Insert(3);
-            tree.Insert(8);
-            tree.Insert(1);
-            tree.Insert(4);
-            tree.Insert(7);
-            tree.Insert(9);
-
-            // Search for non-existing value
-            int searchValue = 6;
-            bool isFound = tree.Search(searchValue);
-
-            // Assert
-            Assert.IsFalse(isFound);
+            Assert.IsTrue(tree.Search(7));
+            Assert.IsFalse(tree.Search(4));
         }
 
-        private int[] PerformInOrderTraversal(BinaryTree tree)
+        [Test]
+        public void TestDelete()
         {
-            var output = new System.IO.StringWriter();
-            Console.SetOut(output);
+            int[] array = { 5, 3, 7, 1, 9, 2 };
+            tree.Init(array);
 
-            tree.InOrderTraversal();
+            tree.Delete(7);
+            int[] expected = { 1, 2, 3, 5, 9 };
+            CollectionAssert.AreEqual(expected, tree.ToArray());
 
-            return Array.ConvertAll(output.ToString().Split(' ', StringSplitOptions.RemoveEmptyEntries), int.Parse);
+            tree.Delete(3);
+            expected = new int[] { 1, 2, 5, 9 };
+            CollectionAssert.AreEqual(expected, tree.ToArray());
+        }
+
+        [Test]
+        public void TestClear()
+        {
+            int[] array = { 5, 3, 7, 1, 9, 2 };
+            tree.Init(array);
+
+            tree.Clear();
+            Assert.AreEqual(0, tree.Size());
+            Assert.Throws<InvalidOperationException>(() => tree.Min());
+        }
+
+        [Test]
+        public void TestSize()
+        {
+            int[] array = { 5, 3, 7, 1, 9, 2 };
+            tree.Init(array);
+
+            Assert.AreEqual(6, tree.Size());
+        }
+
+        [Test]
+        public void TestToArray()
+        {
+            int[] array = { 5, 3, 7, 1, 9, 2 };
+            tree.Init(array);
+
+            int[] expected = { 1, 2, 3, 5, 7, 9 };
+            CollectionAssert.AreEqual(expected, tree.ToArray());
+        }
+
+        [Test]
+        public void TestInit()
+        {
+            int[] array = { 5, 3, 7, 1, 9, 2 };
+            tree.Init(array);
+
+            int[] expected = { 1, 2, 3, 5, 7, 9 };
+            CollectionAssert.AreEqual(expected, tree.ToArray());
+        }
+
+        [Test]
+        public void TestMin()
+        {
+            int[] array = { 5, 3, 7, 1, 9, 2 };
+            tree.Init(array);
+
+            Assert.AreEqual(1, tree.Min());
+        }
+
+        [Test]
+        public void TestMax()
+        {
+            int[] array = { 5, 3, 7, 1, 9, 2 };
+            tree.Init(array);
+
+            Assert.AreEqual(9, tree.Max());
+        }
+
+        [Test]
+        public void TestIndexMin()
+        {
+            int[] array = { 5, 3, 7, 1, 9, 2 };
+            tree.Init(array);
+
+            Assert.AreEqual(1, tree.IndexMin());
+        }
+
+        [Test]
+        public void TestIndexMax()
+        {
+            int[] array = { 5, 3, 7, 1, 9, 2 };
+            tree.Init(array);
+
+            Assert.AreEqual(9, tree.IndexMax());
+        }
+
+        [Test]
+        public void TestReverse()
+        {
+            int[] array = { 5, 3, 7, 1, 9, 2 };
+            tree.Init(array);
+            tree.Reverse();
+
+            int[] expected = { 9, 7, 5, 3, 2, 1 };
+            CollectionAssert.AreEqual(expected, tree.ToArray());
+        }
+
+        [Test]
+        public void TestSort()
+        {
+            int[] array = { 5, 3, 7, 1, 9, 2 };
+            tree.Init(array);
+            tree.Sort();
+
+            int[] expected = { 1, 2, 3, 5, 7, 9 };
+            CollectionAssert.AreEqual(expected, tree.ToArray());
+        }
+
+        [Test]
+        public void TestHalfReverse()
+        {
+            int[] array = { 1, 2, 3, 4 };
+            tree.Init(array);
+            tree.HalfReverse();
+
+            int[] expected = { 1, 2, 3, 4 };
+            CollectionAssert.AreEqual(expected, tree.ToArray());
+        }
+
+        [Test]
+        public void TestInOrderTraversal()
+        {
+            int[] array = { 5, 3, 7, 1, 9, 2 };
+            tree.Init(array);
+
+            using (var sw = new StringWriter())
+            {
+                Console.SetOut(sw);
+                tree.InOrderTraversal();
+                var result = sw.ToString().Trim();
+                Assert.AreEqual("123579", result);
+            }
+        }
+
+        [Test]
+        public void TestPreOrderTraversal()
+        {
+            int[] array = { 5, 3, 7, 1, 9, 2 };
+            tree.Init(array);
+
+            using (var sw = new StringWriter())
+            {
+                Console.SetOut(sw);
+                tree.PreOrderTraversal();
+                var result = sw.ToString().Trim();
+                Assert.AreEqual("531279", result);
+            }
+        }
+
+        [Test]
+        public void TestPostOrderTraversal()
+        {
+            int[] array = { 5, 3, 7, 1, 9, 2 };
+            tree.Init(array);
+
+            using (var sw = new StringWriter())
+            {
+                Console.SetOut(sw);
+                tree.PostOrderTraversal();
+                var result = sw.ToString().Trim();
+                Assert.AreEqual("213975", result);
+            }
         }
     }
 }
